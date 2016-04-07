@@ -1,7 +1,8 @@
-/*jshint es3:false, node:true */
+/* jshint node: true */
+
 "use strict";
 
-require( "jsdom" ).env( "", function ( errors, window ) {
+require( "jsdom" ).env( "", function( errors, window ) {
 	if ( errors ) {
 		console.error( errors );
 		return;
@@ -9,15 +10,13 @@ require( "jsdom" ).env( "", function ( errors, window ) {
 
 	var jQuery = require( ".." )( window );
 
-	exports.deferred = function () {
+	exports.deferred = function() {
 		var deferred = jQuery.Deferred();
 
 		return {
-			get promise() {
-				return deferred.promise();
-			},
+			promise: deferred.promise(),
 			resolve: deferred.resolve.bind( deferred ),
 			reject: deferred.reject.bind( deferred )
 		};
 	};
-});
+} );
